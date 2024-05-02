@@ -1,0 +1,1244 @@
+@use "sass:math";
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+$font-family: "Poppins", sans-serif;
+
+:root {
+  --color-1: rgb(15 23 42);
+  --color-2: rgb(51 65 85);
+  --color-3: rgb(100 116 139);
+  --page-bg: #ffffff;
+  --color-black: 0, 0, 0;
+  // --aa-detached-modal-media-query: (min-width: 768px) !important;
+  // --aa-detached-media-query: (max-width: 768px) !important;
+  // --aa-detached-modal-max-width: 768px !important;
+}
+html[data-theme="dark"] {
+  --color-1: rgb(255, 255, 255);
+  --color-2: rgba(255, 255, 255, 0.8);
+  --color-3: rgba(255, 255, 255, 0.5);
+  --page-bg: #242424;
+  --color-black: 255, 255, 255;
+}
+
+$colors: (
+    "white": #ffffff,
+    "baige": #FBF8F3,
+    "charcoal": #565656,
+    "gold": #D3AB54,
+);
+
+$base-font-size: 16px;
+@function stripUnit($value) {
+  @return math.div($value, ($value * 0 + 1));
+}
+@function toRem($pxValue) {
+  @return #{math.div(stripUnit($pxValue), stripUnit($base-font-size))}rem;
+}
+
+$breakpoints: (
+  xlg: 1400px,
+  xmlg: 1363px,
+  lg: 1200px,
+  md: 1024px,
+  sm: 960px,
+  xs: 576px,
+);
+
+@mixin line-clamp($line) {
+  display: -webkit-box;
+  -webkit-line-clamp: $line;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@mixin media-breakpoint-above($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    $breakpoint-value: map-get($breakpoints, $breakpoint);
+    @media (min-width: $breakpoint-value) {
+      @content;
+    }
+  } @else {
+    @warn 'Invalid breakpoint: #{$breakpoint}.';
+  }
+}
+
+@mixin media-breakpoint-below($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    $breakpoint-value: map-get($breakpoints, $breakpoint);
+    @media (max-width: ($breakpoint-value)) {
+      @content;
+    }
+  } @else {
+    @warn 'Invalid breakpoint: #{$breakpoint}.';
+  }
+}
+
+@mixin media-breakpoint-between($lower, $upper) {
+  @if map-has-key($breakpoints, $lower) and map-has-key($breakpoints, $upper) {
+    $lower-breakpoint: map-get($breakpoints, $lower);
+    $upper-breakpoint: map-get($breakpoints, $upper);
+    @media (min-width: ($lower-breakpoint + 1)) and (max-width: ($upper-breakpoint)) {
+      @content;
+    }
+  } @else {
+    @if (map-has-key($breakpoints, $lower) == false) {
+      @warn 'Your lower breakpoint was invalid: #{$lower}.';
+    }
+    @if (map-has-key($breakpoints, $upper) == false) {
+      @warn 'Your upper breakpoint was invalid: #{$upper}.';
+    }
+  }
+}
+
+@mixin animated($duration: 0.4s) {
+  transition: all $duration cubic-bezier(0.33, 0.04, 0.63, 0.93);
+}
+
+@mixin gridColumnsRepeat($auto: null, $min: null, $max: null) {
+  grid-template-columns: repeat($auto, minmax($min, $max));
+}
+
+$fontSizes: 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62, 64, 66, 68;
+
+@each $size in $fontSizes {
+  $lh: $size * 1.2;
+  .font-size-#{$size} {
+    font-size: toRem($size);
+    line-height: toRem($lh);
+  }
+}
+
+@each $size in $fontSizes {
+  @each $key, $breakpoint in $breakpoints {
+    @include media-breakpoint-below($key) {
+      $lh: $size * 1.4;
+      .#{$key}-font-size-#{$size} {
+        font-size: toRem($size);
+        line-height: toRem($lh);
+      }
+    }
+  }
+}
+
+@each $name, $color in $colors {
+  .font-#{$name} {
+    color: $color;
+  }
+}
+
+@each $name, $color in $colors {
+  @each $key, $breakpoint in $breakpoints {
+    @include media-breakpoint-below($key) {
+      .#{$key}-font-#{$name} {
+        color: $color;
+      }
+    }
+  }
+}
+
+$bolds: 100, 200, 2zZZZZz300, 400, 500, 600, 700, 900;
+
+@each $bold in $bolds {
+  .font-bold-#{$bold} {
+    font-weight: $bold;
+  }
+}
+
+@each $bold in $bolds {
+  @each $key, $breakpoint in $breakpoints {
+    @include media-breakpoint-below($key) {
+      .#{$key}-font-bold-#{$bold} {
+        font-weight: $bold;
+      }
+    }
+  }
+}
+
+$widthHeightProps: auto, fit-content, max-content, min-content, unset;
+
+@each $prop in $widthHeightProps {
+  .width-#{$prop} {
+    width: $prop;
+  }
+  .height-#{$prop} {
+    height: $prop;
+  }
+}
+
+@each $prop in $widthHeightProps {
+  @each $key, $breakpoint in $breakpoints {
+    @include media-breakpoint-below($key) {
+      .#{$key}-width-#{$prop} {
+        width: $prop;
+      }
+      .#{$key}-height-#{$prop} {
+        height: $prop;
+      }
+    }
+  }
+}
+
+.rounded-full {
+  border-radius: 50%;
+}
+
+.height-full {
+  height: 100%;
+}
+
+
+.width-full {
+  width: 100%;
+}
+
+@each $key, $breakpoint in $breakpoints {
+  @include media-breakpoint-below($key) {
+    .#{key}-width-full-imp {
+      width: 100% !important;
+    }
+  }
+}
+
+.border-none {
+  border: none;
+}
+.sm-border-none {
+  border: none;
+}
+
+@each $key, $breakpoint in $breakpoints {
+  @include media-breakpoint-below($key) {
+    .#{key}-border-none {
+      border: none;
+    }
+  }
+}
+
+$positioningProperties: top, right, bottom, left;
+
+@for $size from 0 through 200 {
+  .m-#{$size} {
+    margin: toRem($size);
+  }
+  .mt-#{$size} {
+    margin-top: toRem($size);
+  }
+  .mr-#{$size} {
+    margin-right: toRem($size);
+  }
+  .mb-#{$size} {
+    margin-bottom: toRem($size);
+  }
+  .ml-#{$size} {
+    margin-left: toRem($size);
+  }
+  .p-#{$size} {
+    padding: toRem($size);
+  }
+  .pt-#{$size} {
+    padding-top: toRem($size);
+  }
+  .pr-#{$size} {
+    padding-right: toRem($size);
+  }
+  .pb-#{$size} {
+    padding-bottom: toRem($size);
+  }
+  .pl-#{$size} {
+    padding-left: toRem($size);
+  }
+  .rounded-#{$size} {
+    border-radius: toRem($size);
+  }
+  .gap-#{$size} {
+    gap: toRem($size);
+  }
+  .row-gap-#{$size} {
+    row-gap: toRem($size);
+  }
+  .column-gap-#{$size} {
+    column-gap: toRem($size);
+  }
+  @each $positioningProperty in $positioningProperties {
+    .#{$positioningProperty}-#{$size} {
+      #{$positioningProperty}: toRem($size);
+    }
+    .#{$positioningProperty}-#{$size}-per {
+      #{$positioningProperty}: $size * 1%;
+    }
+  }
+}
+
+@for $size from 0 through 200 {
+  @each $key, $breakpoint in $breakpoints {
+    @include media-breakpoint-below($key) {
+      .#{$key}-m-#{$size} {
+        margin: toRem($size);
+      }
+      .#{$key}-mt-#{$size} {
+        margin-top: toRem($size);
+      }
+      .#{$key}-mr-#{$size} {
+        margin-right: toRem($size);
+      }
+      .#{$key}-mb-#{$size} {
+        margin-bottom: toRem($size);
+      }
+      .#{$key}-ml-#{$size} {
+        margin-left: toRem($size);
+      }
+      .#{$key}-p-#{$size} {
+        padding: toRem($size);
+      }
+      .#{$key}-pt-#{$size} {
+        padding-top: toRem($size);
+      }
+      .#{$key}-pr-#{$size} {
+        padding-right: toRem($size);
+      }
+      .#{$key}-pb-#{$size} {
+        padding-bottom: toRem($size);
+      }
+      .#{$key}-pl-#{$size} {
+        padding-left: toRem($size);
+      }
+      .#{$key}-rounded-#{$size} {
+        border-radius: toRem($size);
+      }
+      .#{$key}-gap-#{$size} {
+        gap: toRem($size);
+      }
+      .#{$key}-row-gap-#{$size} {
+        row-gap: toRem($size);
+      }
+      .#{$key}-column-gap-#{$size} {
+        column-gap: toRem($size);
+      }
+      @each $positioningProperty in $positioningProperties {
+        .#{$key}-#{$positioningProperty}-#{$size} {
+          #{$positioningProperty}: toRem($size);
+        }
+        .#{$key}-#{$positioningProperty}-#{$size}-per {
+          #{$positioningProperty}: $size * 1%;
+        }
+      }
+    }
+  }
+}
+
+@for $size from 0 through 1000 {
+  .width-#{$size} {
+    width: toRem($size);
+  }
+  .width-#{$size}-per {
+    width: $size * 1%;
+  }
+  .min-width-#{$size} {
+    min-width: toRem($size);
+  }
+  .max-width-#{$size} {
+    max-width: toRem($size);
+  }
+  .height-#{$size} {
+    height: toRem($size);
+  }
+  .min-height-#{$size} {
+    min-height: toRem($size);
+  }
+  .max-height-#{$size} {
+    max-height: toRem($size);
+  }
+}
+
+@for $size from 0 through 800 {
+  @each $key, $breakpoint in $breakpoints {
+    @include media-breakpoint-below($key) {
+      .#{$key}-width-#{$size} {
+        width: toRem($size);
+      }
+      .#{$key}-min-width-#{$size} {
+        min-width: toRem($size);
+      }
+      .#{$key}-max-width-#{$size} {
+        max-width: toRem($size);
+      }
+      .#{$key}-height-#{$size} {
+        height: toRem($size);
+      }
+      .#{$key}-min-height-#{$size} {
+        min-height: toRem($size);
+      }
+      .#{$key}-max-height-#{$size} {
+        max-height: toRem($size);
+      }
+    }
+  }
+}
+
+$displays: (
+  "grid": grid,
+  "inline-grid": inline-grid,
+  "flex": flex,
+  "inline-flex": inline-flex,
+  "inline": inline,
+  "block": block,
+  "inline-block": inline-block,
+  "hidden": none,
+);
+
+@each $name, $display in $displays {
+  @if $name == hidden {
+    .#{$name} {
+      display: $display;
+    }
+    .#{$name}-imp {
+      display: $display !important;
+    }
+  }
+  .#{$name} {
+    display: $display;
+  }
+}
+
+@each $name, $display in $displays {
+  @each $key, $breakpoint in $breakpoints {
+    @include media-breakpoint-above($key) {
+      @if $name == hidden {
+        .above-#{$key}-#{$name} {
+          display: $display;
+        }
+        .above-#{$key}-#{$name}-imp {
+          display: $display !important;
+        }
+      }
+      .above-#{$key}-#{$name} {
+        display: $display;
+      }
+    }
+    @include media-breakpoint-below($key) {
+      @if $name == hidden {
+        .#{$key}-#{$name} {
+          display: $display;
+        }
+        .#{$key}-#{$name}-imp {
+          display: $display !important;
+        }
+      }
+      .#{$key}-#{$name} {
+        display: $display;
+      }
+    }
+  }
+}
+
+$flexDirections: row, row-reverse, column, column-reverse;
+
+@each $direction in $flexDirections {
+  .fd-#{$direction} {
+    flex-direction: $direction;
+  }
+}
+
+@each $direction in $flexDirections {
+  @each $key, $breakpoint in $breakpoints {
+    @include media-breakpoint-below($key) {
+      .#{$key}-fd-#{$direction} {
+        flex-direction: $direction;
+      }
+    }
+  }
+}
+
+$gridColumns: (
+  "one": 1fr,
+  "two": 1fr 1fr,
+  "three": 1fr 1fr 1fr,
+  "four": 1fr 1fr 1fr 1fr,
+  "five": 1fr 1fr 1fr 1fr 1fr,
+  "one-two": 1fr 2fr,
+  "two-one": 2fr 1fr,
+  "two-three": 2fr 3fr,
+  "one-four-one": 1fr 4fr 1.5fr,
+  "one-three": 1fr 3fr,
+  "three-two": 3fr 2fr,
+);
+
+@each $name, $column in $gridColumns {
+  .grid-#{$name} {
+    grid-template-columns: $column;
+  }
+}
+
+@each $name, $column in $gridColumns {
+  @each $key, $breakpoint in $breakpoints {
+    @include media-breakpoint-below($key) {
+      .#{$key}-grid-#{$name} {
+        grid-template-columns: $column !important;
+      }
+    }
+  }
+}
+
+$flexWraps: wrap, nowrap, wrap-reverse;
+
+@each $wrap in $flexWraps {
+  .#{$wrap} {
+    flex-wrap: $wrap;
+  }
+}
+
+@each $wrap in $flexWraps {
+  @each $key, $breakpoint in $breakpoints {
+    @include media-breakpoint-below($key) {
+      .#{$key}-#{$wrap} {
+        flex-wrap: $wrap;
+      }
+    }
+  }
+}
+
+$justifyContents: flex-start, flex-end, center, space-between, space-around, space-evenly;
+
+@each $justifyContent in $justifyContents {
+  .jc-#{$justifyContent} {
+    justify-content: $justifyContent;
+  }
+}
+
+@each $justifyContent in $justifyContents {
+  @each $key, $breakpoint in $breakpoints {
+    @include media-breakpoint-below($key) {
+      .#{$key}-jc-#{$justifyContent} {
+        justify-content: $justifyContent;
+      }
+    }
+  }
+}
+
+$aligns: flex-start, flex-end, center, baseline, stretch, inherit, initial, unset;
+
+@each $align in $aligns {
+  .items-#{$align} {
+    align-items: $align;
+  }
+  .items-self-#{$align} {
+    align-self: $align;
+  }
+  .jc-self-#{$align} {
+    justify-self: $align;
+  }
+}
+
+@each $align in $aligns {
+  @each $key, $breakpoint in $breakpoints {
+    @include media-breakpoint-below($key) {
+      .#{$key}-items-#{$align} {
+        align-items: $align;
+      }
+      .#{$key}-items-self-#{$align} {
+        align-self: $align;
+      }
+      .#{$key}-jc-self-#{$align} {
+        justify-self: $align;
+      }
+    }
+  }
+}
+
+$contents: flex-start, flex-end, center, space-between, space-around, stretch;
+
+@each $content in $contents {
+  .content-#{$content} {
+    align-content: $content;
+  }
+}
+
+@each $content in $contents {
+  @each $key, $breakpoint in $breakpoints {
+    @include media-breakpoint-below($key) {
+      .#{$key}-content-#{$content} {
+        align-content: $content;
+      }
+    }
+  }
+}
+
+@for $grow from 1 to 12 {
+  .flex-grow-#{$grow} {
+    flex-grow: $grow;
+  }
+}
+
+@for $grow from 1 to 12 {
+  @each $key, $breakpoint in $breakpoints {
+    @include media-breakpoint-below($key) {
+      .#{$key}-flex-grow-#{$grow} {
+        flex-grow: $grow;
+      }
+    }
+  }
+}
+
+@for $shrink from 0 to 12 {
+  .flex-shrink-#{$shrink} {
+    flex-shrink: $shrink;
+  }
+}
+
+@for $shrink from 0 to 12 {
+  @each $key, $breakpoint in $breakpoints {
+    @include media-breakpoint-below($key) {
+      .#{$key}-flex-shrink-#{$shrink} {
+        flex-shrink: $shrink;
+      }
+    }
+  }
+}
+
+$cursors: pointer, default, none, no-drop;
+
+@each $cursor in $cursors {
+  .cursor-#{$cursor} {
+    cursor: $cursor;
+  }
+}
+
+@each $cursor in $cursors {
+  @each $key, $breakpoint in $breakpoints {
+    @include media-breakpoint-below($key) {
+      .#{$key}-cursor-#{$cursor} {
+        cursor: $cursor;
+      }
+    }
+  }
+}
+
+@for $line from 1 through 10 {
+  .border-#{$line} {
+    border: toRem($line) solid;
+  }
+  .border-top-#{$line} {
+    border-top: toRem($line) solid;
+  }
+  .border-right-#{$line} {
+    border-right: toRem($line) solid;
+  }
+  .border-bottom-#{$line} {
+    border-bottom: toRem($line) solid;
+  }
+  .border-left-#{$line} {
+    border-left: toRem($line) solid;
+  }
+}
+
+@for $line from 1 through 4 {
+  @each $key, $breakpoint in $breakpoints {
+    @include media-breakpoint-below($key) {
+      .#{key}-border-#{$line} {
+        border: toRem($line) solid;
+      }
+      .#{key}-border-top-#{$line} {
+        border-top: toRem($line) solid;
+      }
+      .#{key}-border-right-#{$line} {
+        border-right: toRem($line) solid;
+      }
+      .#{key}-border-bottom-#{$line} {
+        border-bottom: toRem($line) solid;
+      }
+      .#{key}-border-left-#{$line} {
+        border-left: toRem($line) solid;
+      }
+    }
+  }
+}
+
+@for $line from 1 through 10 {
+  .border-dashed-#{$line} {
+    border: toRem($line) dashed;
+  }
+  .border-dashed-top-#{$line} {
+    border-top: toRem($line) dashed;
+  }
+  .border-dashed-right-#{$line} {
+    border-right: toRem($line) dashed;
+  }
+  .border-dashed-bottom-#{$line} {
+    border-bottom: toRem($line) dashed;
+  }
+  .border-dashed-left-#{$line} {
+    border-left: toRem($line) dashed;
+  }
+}
+
+@for $line from 1 through 4 {
+  @each $key, $breakpoint in $breakpoints {
+    @include media-breakpoint-below($key) {
+      .#{key}-border-dashed-#{$line} {
+        border: toRem($line) dashed;
+      }
+      .#{key}-border-dashed-top-#{$line} {
+        border-top: toRem($line) dashed;
+      }
+      .#{key}-border-dashed-right-#{$line} {
+        border-right: toRem($line) dashed;
+      }
+      .#{key}-border-dashed-bottom-#{$line} {
+        border-bottom: toRem($line) dashed;
+      }
+      .#{key}-border-dashed-left-#{$line} {
+        border-left: toRem($line) dashed;
+      }
+    }
+  }
+}
+
+@for $opacity from 1 through 100 {
+  @each $colorKey, $color in $colors {
+    @if $colorKey == "black" {
+      .bg-#{$opacity} {
+        background: rgba($color, math.div($opacity, 100));
+      }
+      .border-color-#{$opacity} {
+        border-color: rgba($color, math.div($opacity, 100));
+      }
+    }
+    @if $colorKey == "transparent" {
+      .bg-#{$colorKey} {
+        background: transparent;
+      }
+    } @else {
+      .bg-#{$colorKey}-#{$opacity} {
+        background: rgba($color, math.div($opacity, 100));
+      }
+      .border-#{$colorKey}-#{$opacity} {
+        border-color: rgba($color, math.div($opacity, 100));
+      }
+    }
+  }
+}
+
+@for $line from 1 through 8 {
+  .lines-#{$line} {
+    display: -webkit-box;
+    -webkit-line-clamp: $line;
+    line-clamp: $line;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+@for $line from 1 through 8 {
+  @each $key, $breakpoint in $breakpoints {
+    @include media-breakpoint-below($key) {
+      .#{$key}-lines-#{$line} {
+        display: -webkit-box;
+        -webkit-line-clamp: $line;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+}
+
+$overflows: scroll, hidden, auto, clip, visible;
+
+@each $overflow in $overflows {
+  .o-#{$overflow} {
+    overflow: $overflow;
+  }
+  .o-x-#{$overflow} {
+    overflow-x: $overflow;
+  }
+  .o-y-#{$overflow} {
+    overflow-y: $overflow;
+  }
+}
+
+@each $overflow in $overflows {
+  @each $key, $breakpoint in $breakpoints {
+    @include media-breakpoint-below($key) {
+      .#{$key}-o-#{$overflow} {
+        overflow: $overflow;
+      }
+      .#{$key}-o-x-#{$overflow} {
+        overflow-x: $overflow;
+      }
+      .#{$key}-o-y-#{$overflow} {
+        overflow-y: $overflow;
+      }
+    }
+  }
+}
+
+@for $position from 0 through 100 {
+  .top-#{$position} {
+    top: toRem($position);
+  }
+  .left-#{$position} {
+    left: toRem($position);
+  }
+  .right-#{$position} {
+    right: toRem($position);
+  }
+}
+
+@for $position from 0 through 100 {
+  @each $key, $breakpoint in $breakpoints {
+    @include media-breakpoint-below($key) {
+      .#{$key}-top-#{$position} {
+        top: toRem($position);
+      }
+      .#{$key}-left-#{$position} {
+        left: toRem($position);
+      }
+      .#{$key}-right-#{$position} {
+        right: toRem($position);
+      }
+    }
+  }
+}
+
+$positions: static, absolute, fixed, relative, sticky;
+
+@each $position in $positions {
+  .#{$position} {
+    position: $position;
+  }
+}
+
+@each $position in $positions {
+  @each $key, $breakpoint in $breakpoints {
+    @include media-breakpoint-below($key) {
+      .#{$key}-#{$position} {
+        position: $position;
+      }
+    }
+  }
+}
+
+$objectFits: fill, contain, cover, none, scale-down;
+
+@each $objectFit in $objectFits {
+  .obj-fit-#{$objectFit} {
+    object-fit: $objectFit;
+  }
+}
+
+@each $objectFit in $objectFits {
+  @each $key, $breakpoint in $breakpoints {
+    @include media-breakpoint-below($key) {
+      .#{$key}-obj-fit-#{$objectFit} {
+        object-fit: $objectFit;
+      }
+    }
+  }
+}
+
+@for $opacity from 0 to 10 {
+  .opacity-#{$opacity} {
+    opacity: math.div($opacity, 10);
+  }
+}
+
+@for $opacity from 0 to 10 {
+  @each $key, $breakpoint in $breakpoints {
+    @include media-breakpoint-below($key) {
+      .#{$key}-opacity-#{$opacity} {
+        opacity: math.div($opacity, 10);
+      }
+    }
+  }
+}
+
+$textAligns: center, left, right, justify;
+
+@each $textAlign in $textAligns {
+  .text-#{$textAlign} {
+    text-align: $textAlign;
+  }
+}
+
+@each $textAlign in $textAligns {
+  @each $key, $breakpoint in $breakpoints {
+    @include media-breakpoint-below($key) {
+      .#{$key}-text-#{$textAlign} {
+        text-align: $textAlign;
+      }
+    }
+  }
+}
+
+$listStyles: disc, circle, decimal;
+
+@each $listStyle in $listStyles {
+  .list-style-#{$listStyle} {
+    list-style: $listStyle;
+  }
+}
+
+@each $key, $breakpoint in $breakpoints {
+  @include media-breakpoint-below($key) {
+    .#{$key}-width-full {
+      width: 100%;
+    }
+  }
+}
+
+$textTransforms: capitalize, lowercase, uppercase;
+
+@each $textTransform in $textTransforms {
+  .#{$textTransform} {
+    text-transform: $textTransform;
+  }
+}
+
+.outline-none {
+  outline: none;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.animated {
+  @include animated;
+}
+
+.box-shadow {
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+}
+
+.box-shadow-top {
+  box-shadow: 0 -5px 5px -5px rgba(0, 0, 0, 0.1);
+}
+
+.box-shadow-right {
+  box-shadow: 5px 0 5px -5px rgba(0, 0, 0, 0.1);
+}
+
+.box-shadow-bottom {
+  box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.1);
+}
+
+.box-shadow-left {
+  box-shadow: -5px 0 5px -5px rgba(0, 0, 0, 0.1);
+}
+
+.drop-shadow {
+  filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.1));
+}
+
+.disabled {
+  @extend .cursor-no-drop;
+  @extend .opacity-5;
+}
+
+$auto: auto;
+
+.mt-auto {
+  margin-top: $auto;
+}
+
+.mr-auto {
+  margin-right: $auto;
+}
+
+.mb-auto {
+  margin-bottom: $auto;
+}
+
+.ml-auto {
+  margin-left: $auto;
+}
+
+@each $key, $breakpoint in $breakpoints {
+  @include media-breakpoint-below($key) {
+    .#{$key}-height-auto {
+      height: auto;
+    }
+    .#{$key}-width-auto {
+      width: auto;
+    }
+  }
+}
+
+@for $size from 1 to 10 {
+  .zIndex-#{$size} {
+    z-index: $size;
+  }
+}
+
+.flex-shrink-auto {
+  flex-shrink: auto;
+  @each $key, $breakpoint in $breakpoints {
+    @include media-breakpoint-below($key) {
+      .#{$key}-flex-shrink-auto {
+        flex-shrink: auto;
+      }
+    }
+  }
+}
+
+.box-shadow-none {
+  box-shadow: none;
+}
+@each $key, $breakpoint in $breakpoints {
+  @include media-breakpoint-below($key) {
+    .#{$key}-box-shadow-none {
+      box-shadow: none;
+    }
+  }
+}
+
+@each $name, $color in $colors {
+  .text-hovered-#{$name} {
+    &:hover {
+      color: $color;
+    }
+  }
+}
+
+.mobile-web-only {
+  display: none;
+  @include media-breakpoint-below(sm) {
+    display: block;
+  }
+}
+.mobile-web-only-flex {
+  display: none;
+  @include media-breakpoint-below(sm) {
+    display: flex;
+  }
+}
+.mobile-web-only-grid {
+  display: none;
+  @include media-breakpoint-below(sm) {
+    display: grid;
+  }
+}
+.default-line {
+  line-height: 1.2 !important;
+}
+
+
+.button {
+  background-color: #D3AB54 !important;
+  border: none;
+  color: white;
+  padding: 12px 33px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 18px;
+}
+
+.button-inv {
+  background-color:white !important;
+  border: none;
+  color: #D3AB54;
+  padding: 12px 33px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 18px;
+}
+
+.footer-bg {
+  position: absolute;
+  width: 1728px;
+  height: 585px;
+  left: 0px;
+  top: 0px;
+
+  background: linear-gradient(92.37deg, rgba(211, 171, 84, 0.5) -7.9%, rgba(0, 0, 0, 0.5) 48.18%, rgba(211, 171, 84, 0.5) 109.6%);
+}
+
+@each $key, $breakpoint in $breakpoints {
+  @include media-breakpoint-below($key) {
+    .#{key}-height-full-imp {
+      height: 100% !important;
+    }
+  }
+}
+
+@mixin flexbox(
+  $display: null,
+  $direction: null,
+  $wrap: null,
+  $flow: null,
+  $justifyContent: null,
+  $justifyItems: null,
+  $justifySelf: null,
+  $alignItems: null,
+  $alignContent: null,
+  $alignSelf: null,
+  $columnGap: null,
+  $rowGap: null,
+  $grow: null,
+  $order: null,
+  $shrink: null,
+  $basis: null,
+  $gridGap: null
+) {
+  display: $display;
+  flex-direction: $direction;
+  flex-wrap: $wrap;
+  flex-flow: $flow;
+  justify-content: $justifyContent;
+  justify-self: $justifySelf;
+  justify-items: $justifyItems;
+  align-items: $alignItems;
+  align-content: $alignContent;
+  align-self: $alignSelf;
+  column-gap: $columnGap;
+  row-gap: $rowGap;
+  flex-basis: $basis;
+  flex-shrink: $shrink;
+  flex-grow: $grow;
+  order: $order;
+  gap: $gridGap;
+}
+
+@function calcWeight($weight) {
+  @return $weight * 100;
+}
+
+@function calcRem($size) {
+  @return $size;
+}
+
+@mixin typography($color: null, $family: null, $size: null, $weight: null, $style: normal, $height: null, $align: null, $transform: null, $opacity: null) {
+  color: $color;
+  font-family: $family;
+  @if $size != null {
+    font-size: calcRem($size);
+  }
+  @if $weight != null {
+    font-weight: calcWeight($weight);
+  }
+  @if $height != null {
+    line-height: calcRem($height);
+  }
+  font-style: $style;
+  text-align: $align;
+  text-transform: $transform;
+  opacity: $opacity;
+}
+@mixin margin($all: null, $top: null, $right: null, $bottom: null, $left: null, $rectangle: null) {
+  margin: $all;
+  margin-top: $top;
+  margin-right: $right;
+  margin-bottom: $bottom;
+  margin-left: $left;
+  margin: $rectangle;
+}
+@mixin box(
+  $background: null,
+  $border: null,
+  $radius: null,
+  $color: null,
+  $display: null,
+  $margin: null,
+  $padding: null,
+  $shadow: null,
+  $width: null,
+  $height: null,
+  $alignContent: null,
+  $position: null,
+  $top: null,
+  $right: null,
+  $bottom: null,
+  $left: null,
+  $cursor: null,
+  $overflow: null,
+  $zIndex: null,
+  $opacity: null,
+  $outline: null,
+  $objectFit: null,
+  $alignItems: null,
+  $justifyContent: null,
+  $flexDirection: null,
+  $transform: null,
+  $textAlign: null
+) {
+  background: $background;
+  border: $border;
+  border-radius: $radius;
+  box-shadow: $shadow;
+  color: $color;
+  display: $display;
+  margin: $margin;
+  padding: $padding;
+  height: $height;
+  width: $width;
+  text-align: $alignContent;
+  cursor: $cursor;
+  overflow: $overflow;
+  z-index: $zIndex;
+  opacity: $opacity;
+  outline: $outline;
+  object-fit: $objectFit;
+  @if $position != null {
+    position: $position;
+    top: $top;
+    right: $right;
+    bottom: $bottom;
+    left: $left;
+  }
+  align-items: $alignItems;
+  justify-content: $justifyContent;
+  flex-direction: $flexDirection;
+  transform: $transform;
+  text-align: $textAlign;
+}
+
+@mixin padding($all: null, $top: null, $right: null, $bottom: null, $left: null, $rectangle: null) {
+  padding: $all;
+  padding-top: $top;
+  padding-right: $right;
+  padding-bottom: $bottom;
+  padding-left: $left;
+  padding: $rectangle;
+}
+
+@mixin transition($property: all, $duration: 0.3s, $ease: ease-in-out) {
+  -webkit-transition: $property $duration $ease;
+  -moz-transition: $property $duration $ease;
+  -o-transition: $property $duration $ease;
+  transition: $property $duration $ease;
+}
+
+@mixin font($fontFamily: null, $fontSize: null, $fontWeight: null, $fontStyle: normal, $lineHeight: null, $color: null, $textAlign: null, $textDecoration: null, $letterSpacing: null, $textTransform: null) {
+  color: $color;
+  font-family: $fontFamily;
+  font-weight: $fontWeight;
+  font-style: $fontStyle;
+  text-align: $textAlign;
+  -webkit-text-decoration: $textDecoration;
+  text-decoration: $textDecoration;
+  font-size: $fontSize;
+  line-height: $lineHeight;
+  letter-spacing: $letterSpacing;
+  text-transform: $textTransform;
+}
+
+@mixin gridbox($display: null, $template: null, $justifyContent: null, $alignItems: null, $gap: null, $justifySelf: null, $alignSelf: null, $autoRow: null, $rowGap: null, $columnGap: null, $justifyItems: null) {
+  display: $display;
+  grid-template-columns: $template;
+  justify-content: $justifyContent;
+  align-items: $alignItems;
+  gap: $gap;
+  grid-row-gap: $rowGap;
+  justify-self: $justifySelf;
+  align-self: $alignSelf;
+  grid-auto-rows: $autoRow;
+  justify-items: $justifyItems;
+  grid-column-gap: $columnGap;
+}
+
+// Please do not add classes in this file, add in main.scss
