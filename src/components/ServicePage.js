@@ -2,9 +2,6 @@ import React from 'react';
 import YourPackage from "../image/YourPackage.png"
 import YourPackageBackground from "../image/perfect_package_background.png"
 import LineStar from "../image/Line Star.png"
-
-import 'swiper/css';
-import 'swiper/css/pagination';
 import { Button, Col, Row } from 'antd';
 
 const ServicePage = () => {
