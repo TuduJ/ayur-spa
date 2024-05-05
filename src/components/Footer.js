@@ -7,10 +7,10 @@ const Footer = () => {
     return (
         <>
             <div className='relative'>
-                <img src={FooterImage} alt='sanjeevanam'/>
+                <img src={FooterImage} alt='footer banner' className='sanjeevanam-img'/>
                 <div className='footer-bg flex jc-center items-center '>
                     <div>
-                        <h1 className='font-size-90 font-bold-700 font-white text-center font-family-petrona border-bottom-4 border-gold-100 pb-10'>Book Services Now</h1>
+                        <h1 className='font-size-40 font-bold-700 font-white text-center font-family-petrona border-bottom-4 border-gold-100 pb-10'>Book Services Now</h1>
                         <div className='flex jc-space-between items-center'>
                             <button className='button mr-10'>
                                 Appointment
@@ -32,27 +32,27 @@ const Footer = () => {
                         <div className='width-80'>
                             <Divider className='bg-gold-100 height-4'/>
                         </div>
-                        <p className='mt-10 font-size-24 font-bold-100 font-gold'>Fish Spa</p>
-                        <p className='mt-10 font-size-24 font-bold-100 font-gold'>Healthcare</p>
-                        <p className='mt-10 font-size-24 font-bold-100 font-gold'>Kerala Special Therapies</p>
-                        <p className='mt-10 font-size-24 font-bold-100 font-gold'>beauty Treatments</p>
+                        <p className='mt-10 font-size-24 font-bold-200 font-gold'>Fish Spa</p>
+                        <p className='mt-10 font-size-24 font-bold-200 font-gold'>Healthcare</p>
+                        <p className='mt-10 font-size-24 font-bold-200 font-gold'>Kerala Special Therapies</p>
+                        <p className='mt-10 font-size-24 font-bold-200 font-gold'>beauty Treatments</p>
                     </Col>
                     <Col span={4}>
                         <div className='width-80'>
                             <Divider className='bg-white-100 height-4'/>
                         </div>
-                        <p className='mt-10 font-size-24 font-bold-100 font-gold'>About</p>
-                        <p className='mt-10 font-size-24 font-bold-100 font-gold'>Services</p>
-                        <p className='mt-10 font-size-24 font-bold-100 font-gold'>Membership</p>
-                        <p className='mt-10 font-size-24 font-bold-100 font-gold'>Contact</p>
+                        <p className='mt-10 font-size-24 font-bold-200 font-gold'>About</p>
+                        <p className='mt-10 font-size-24 font-bold-200 font-gold'>Services</p>
+                        <p className='mt-10 font-size-24 font-bold-200 font-gold'>Membership</p>
+                        <p className='mt-10 font-size-24 font-bold-200 font-gold'>Contact</p>
                     </Col>
                     <Col span={6}>
                         <div className='width-80'>
                             <Divider className='bg-gold-100 height-4'/>
                         </div>
-                        <p className='mt-10 font-size-24 font-bold-100 font-gold'>@+91 98457 03356</p>
-                        <p className='mt-10 font-size-24 font-bold-100 font-gold'>ayurspa@gmail.com</p>
-                        <p className='mt-10 font-size-24 font-bold-100 font-gold'>Privacy Policy</p>
+                        <p className='mt-10 font-size-24 font-bold-200 font-gold'>@+91 98457 03356</p>
+                        <p className='mt-10 font-size-24 font-bold-200 font-gold'>ayurspa@gmail.com</p>
+                        <p className='mt-10 font-size-24 font-bold-200 font-gold'>Privacy Policy</p>
                     </Col>
                 </Row>
             </div>

@@ -1,5 +1,5 @@
 @use "sass:math";
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 $font-family: "Poppins", sans-serif;
 
@@ -26,6 +26,7 @@ $colors: (
     "baige": #FBF8F3,
     "charcoal": #565656,
     "gold": #D3AB54,
+    "turqoise": #2C4F58,
 );
 
 $base-font-size: 16px;
@@ -100,23 +101,25 @@ $breakpoints: (
   grid-template-columns: repeat($auto, minmax($min, $max));
 }
 
-$fontSizes: 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62, 64, 66, 68;
-
-@each $size in $fontSizes {
-  $lh: $size * 1.2;
-  .font-size-#{$size} {
-    font-size: toRem($size);
-    line-height: toRem($lh);
+@for $fontSizes from 0 through 100 {
+  @each $size in $fontSizes {
+    $lh: $size * 1.2;
+    .font-size-#{$size} {
+      font-size: toRem($size);
+      line-height: toRem($lh);
+    }
   }
 }
 
-@each $size in $fontSizes {
-  @each $key, $breakpoint in $breakpoints {
-    @include media-breakpoint-below($key) {
-      $lh: $size * 1.4;
-      .#{$key}-font-size-#{$size} {
-        font-size: toRem($size);
-        line-height: toRem($lh);
+@for $fontSizes from 0 through 100 {
+  @each $size in $fontSizes {
+    @each $key, $breakpoint in $breakpoints {
+      @include media-breakpoint-below($key) {
+        $lh: $size * 1.4;
+        .#{$key}-font-size-#{$size} {
+          font-size: toRem($size);
+          line-height: toRem($lh);
+        }
       }
     }
   }
@@ -1050,13 +1053,40 @@ $auto: auto;
 
 .footer-bg {
   position: absolute;
-  width: 1728px;
-  height: 585px;
+  width: 100vw;
+  height: 568px;
   left: 0px;
   top: 0px;
 
   background: linear-gradient(92.37deg, rgba(211, 171, 84, 0.5) -7.9%, rgba(0, 0, 0, 0.5) 48.18%, rgba(211, 171, 84, 0.5) 109.6%);
 }
+
+.services-bg {
+  position: absolute;
+  width: 100vw;
+  height: 452px;
+  left: 0px;
+  top: 0px;
+  background: rgba(0, 0, 0, 0.66);
+}
+
+.header-link {
+  text-decoration: none;
+  /* Gallery */
+
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  text-transform: uppercase;
+
+  color: #565656;
+}
+
+.sanjeevanam-img {
+  width: 100vw;
+}
+
 
 @each $key, $breakpoint in $breakpoints {
   @include media-breakpoint-below($key) {

@@ -1,29 +1,20 @@
 import React from "react";
 import BrandLogo from "../image/Logo.png"
-import { Col, Row } from "antd";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
     <div className="bg-baige-100 p-10 width-100-per fixed top-0 zIndex-1">
       <div className="pl-100 pr-140 flex fd-row items-center jc-space-between">
         <img src={BrandLogo} alt="Brand Logo"/>
-        {/* <Row justify="end" className="width-70-per font-bold-700 font-charcoal">
-          <Col span={3}>HOME</Col>
-          <Col span={3}>ABOUT</Col>
-          <Col span={3}>SERVICES</Col>
-          <Col span={3}>GALLARY</Col>
-          <Col span={3}>FIND A SPA</Col>
-          <Col span={4}>MEMBERSHIP</Col>
-          <Col span={3}>CONTACT</Col>
-        </Row> */}
         <div className="width-70-per font-bold-700 flex jc-space-between">
-          <a className="font-charcoal" href="#home">HOME</a>
-          <a className="font-charcoal" href="#about">ABOUT</a>
-          <a className="font-charcoal" href="#services">SERVICES</a>
-          <a className="font-charcoal" href="#gallery">GALLERY</a>
-          <a className="font-charcoal" href="#findaspa">FIND A SPA</a>
-          <a className="font-charcoal" href="#membership">MEMBERSHIP</a>
-          <a className="font-charcoal" href="#contact">CONTACT</a>
+          <p className="font-charcoal header-link"><Link to="/" className="font-charcoal header-link">HOME</Link></p>
+          <p className="font-charcoal header-link">ABOUT</p>
+          <p className="font-charcoal header-link"><Link to="/services" className="font-charcoal header-link">SERVICES</Link></p>
+          <p className="font-charcoal header-link"><Link to="/gallery" className="font-charcoal header-link">GALLERY</Link></p>
+          <p className="font-charcoal header-link"><Link to="/find-a-spa" className="font-charcoal header-link">FIND A SPA</Link></p>
+          <p className="font-charcoal header-link"><Link to="/membership" className="font-charcoal header-link">MEMBERSHIP</Link></p>
+          <p className="font-charcoal header-link"><Link to="/contact" className="font-charcoal header-link">CONTACT</Link></p>
         </div>
       </div>
     </div>

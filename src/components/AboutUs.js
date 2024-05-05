@@ -4,7 +4,7 @@ import About_Us from "../image/about_us.png"
 
 const AboutUs = () => {
     return (
-        <div id='about'>
+        <div>
             <Row justify={"space-between"}>
                 <Col span={12}>
                     <div className='pt-160 pl-120 pr-80 pb-180'>

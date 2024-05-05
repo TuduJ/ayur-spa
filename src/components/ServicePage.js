@@ -18,7 +18,7 @@ const ServicePage = () => {
                 <img src={YourPackageBackground} alt='sanjeevanam' className='absolute right-0'/>
                 <Row justify={'space-between'} className='pl-90 pt-110 pb-140'>
                     <Col span={10}>
-                        <img src={YourPackage} alt='sanjeevanam'/>
+                        <img src={YourPackage} alt='sanjeevanam' className='relative'/>
                     </Col>
                     <Col span={12} className='pr-120'>
                         <h3 className='font-size-60 font-family-petrona mt-20'>Your Perfect package</h3>
