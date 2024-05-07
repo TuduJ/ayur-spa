@@ -6,9 +6,6 @@ const Contact = () => {
     return (
         <>
             <Header/>
-            <div className='mt-100'>
-                membership
-            </div>
             <Footer/>
         </>
     );

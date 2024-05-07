@@ -1049,6 +1049,10 @@ $auto: auto;
   text-decoration: none;
   display: inline-block;
   font-size: 18px;
+  & a {
+    color: #D3AB54;
+    text-decoration: none;
+  }
 }
 
 .footer-bg {

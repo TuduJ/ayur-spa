@@ -16,7 +16,7 @@ const Footer = () => {
                                 Appointment
                             </button>
                             <button className='button-inv'>
-                                Make a Call
+                                <a href="tel:+919845703356">Make a Call</a>
                             </button>
                         </div>
                     </div>
