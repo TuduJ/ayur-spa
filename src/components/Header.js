@@ -43,7 +43,7 @@ const Header = () => {
         <img src={BrandLogo} alt="Brand Logo" className="sm-width-50 "/>
         <div className="width-70-per font-bold-700 flex jc-space-between sm-hidden">
           <p className="font-charcoal header-link"><Link to="/" className="font-charcoal header-link">HOME</Link></p>
-          <p className="font-charcoal header-link">ABOUT</p>
+          <p className="font-charcoal header-link"><Link to="/" className="font-charcoal header-link"><a href="#about">ABOUT</a></Link></p>
           <p className="font-charcoal header-link"><Link to="/services" className="font-charcoal header-link">SERVICES</Link></p>
           <p className="font-charcoal header-link"><Link to="/gallery" className="font-charcoal header-link">GALLERY</Link></p>
           <p className="font-charcoal header-link"><Link to="/find-a-spa" className="font-charcoal header-link">FIND A SPA</Link></p>

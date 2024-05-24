@@ -2,23 +2,21 @@ import React from 'react';
 import FooterImage from '../image/footer_image.png'
 import { Col, Divider, Row } from 'antd';
 import BrandLogo from "../image/Logo.png"
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
     return (
         <>
-            <div className='relative'>
-                <img src={FooterImage} alt='footer banner' className='sanjeevanam-img'/>
-                <div className='footer-bg flex jc-center items-center '>
-                    <div>
-                        <h1 className='font-size-40 font-bold-700 font-white text-center font-family-petrona border-bottom-4 border-gold-100 pb-10'>Book Services Now</h1>
-                        <div className='flex jc-space-between items-center'>
-                            <button className='button mr-10'>
-                                Appointment
-                            </button>
-                            <button className='button-inv'>
-                                <a href="tel:+919845703356">Make a Call</a>
-                            </button>
-                        </div>
+            <div className='relative footer-bg-img flex jc-center items-center'>
+                <div>
+                    <h1 className='font-size-40 font-bold-700 font-white text-center font-family-petrona border-bottom-4 border-gold-100 pb-10'>Book Services Now</h1>
+                    <div className='flex jc-space-between items-center'>
+                        <button className='button mr-10'>
+                            Appointment
+                        </button>
+                        <button className='button-inv'>
+                            <a href="tel:+919845703356">Make a Call</a>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -41,10 +39,10 @@ const Footer = () => {
                         <div className='width-80'>
                             <Divider className='bg-white-100 height-4'/>
                         </div>
-                        <p className='mt-10 font-size-24 font-bold-200 font-gold'>About</p>
-                        <p className='mt-10 font-size-24 font-bold-200 font-gold'>Services</p>
-                        <p className='mt-10 font-size-24 font-bold-200 font-gold'>Membership</p>
-                        <p className='mt-10 font-size-24 font-bold-200 font-gold'>Contact</p>
+                        <p className='mt-10 font-size-24 font-bold-200 font-gold'><Link to="/" className="font-charcoal footer-link">About</Link></p>
+                        <p className='mt-10 font-size-24 font-bold-200 font-gold'><Link to="/services" className="font-charcoal footer-link">Services</Link></p>
+                        <p className='mt-10 font-size-24 font-bold-200 font-gold'><Link to="/membership" className="font-charcoal footer-link">Membership</Link></p>
+                        <p className='mt-10 font-size-24 font-bold-200 font-gold'><Link to="/contact" className="font-charcoal footer-link">Contact</Link></p>
                     </Col>
                     <Col span={6}>
                         <div className='width-80'>

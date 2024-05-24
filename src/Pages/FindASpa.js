@@ -1,18 +1,14 @@
 import React from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import ServicesImage from '../image/services_banner.png'
 
 const FindASpa = () => {
     return (
         <>
             <Header/>
             <div className='mt-100'>
-                <div className='relative'>
-                    <img src={ServicesImage} alt='description banner' className='sanjeevanam-img'/>
-                    <div className='services-bg flex jc-center items-center '>
-                        <p className='font-size-80 font-bold-500 font-white text-center font-family-petrona'>FIND A SPA</p>
-                    </div>
+                <div className='services-bg flex jc-center items-center '>
+                    <p className='font-size-80 font-bold-500 font-white text-center font-family-petrona'>FIND A SPA</p>
                 </div>
                 <div className='pt-100 pl-117 pr-127 pb-82'>
                     <p className='mt-40 font-size-34 font-bold-200 text-justify'>1.    Kashayam Ayurveda, #131, Near Silk board flyover & Opp Madiwala Bus stop, Madiwala, Hosur Main Road, Bangalore – 560068. <br/>Contact - +91 7795643045</p>

@@ -1,7 +1,4 @@
 import React from 'react';
-import Home1 from "../image/home_header_1.png"
-import Home2 from "../image/home_header_2.png"
-import Home3 from "../image/home_header_3.png"
 import Sanjeevanam from "../image/ayur_sanjeevanam.png"
 import Take_Break from "../image/take_break.png"
 import { Carousel, Col, Divider, Row } from 'antd';
@@ -10,14 +7,41 @@ const Home = () => {
     return (
         <div>
             <Carousel autoplay>
-                <div>
-                    <img src={Home1} alt='home1'/>
+                <div className='home-carousel-1'>
+                    <div className='height-full flex items-center jc-flex-start pl-90 width-550'>
+                        <div>
+                            <p className='font-size-75 font-white mb-40 font-family-baloo'>
+                                Where you feel unique and special
+                            </p>
+                            <button className='button mr-10 pointer'>
+                                Make Appointment
+                            </button>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <img src={Home2} alt='home2'/>
+                <div className='home-carousel-2'>
+                    <div className='height-full flex items-center jc-flex-start pl-90 width-1080'>
+                        <div>
+                            <p className='font-size-75 font-white mb-40 font-family-baloo'>
+                                Where you feel unique and special
+                            </p>
+                            <button className='button mr-10 pointer'>
+                                Make Appointment
+                            </button>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <img src={Home3} alt='home3'/>
+                <div className='home-carousel-3'>
+                    <div className='height-full flex items-center jc-flex-start pl-90 width-550'>
+                        <div>
+                            <p className='font-size-75 font-white mb-40 font-family-baloo'>
+                                Where you feel unique and special
+                            </p>
+                            <button className='button mr-10 pointer'>
+                                Make Appointment
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </Carousel>
             <div className='mt-100 mr-120 mb-66 ml-120'>

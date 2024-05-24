@@ -4,22 +4,16 @@ import About_Us from "../image/about_us.png"
 
 const AboutUs = () => {
     return (
-        <div>
-            <Row justify={"space-between"}>
-                <Col span={12}>
-                    <div className='pt-160 pl-120 pr-80 pb-180'>
-                        <h4 className='font-size-60 font-bold-500 font-gold font-family-petrona mb-20 mt-0'>About US</h4>
-                        <div className='width-200'>
-                            <Divider className='bg-gold-100 height-4'/>
-                        </div>
-                        <p className='font-size-24 mt-40 font-bold-200 text-justify'>The founders of Ayur Sanjeevanam comes with over two decades of rich heritage of Ayurveda. Embarked on a mission over 15 years ago to redefine the Spa experience, and to make the benefits of Ayurveda accessible to people at an affordable price, we established the brand ‘Ayur Wellness & Spa’. We opened our first Spa for Men in Koramangala, in Bangalore City in the year 2009, and today we have grown to 6 locations in the City, served more than 2,00,000 guests in the past 15 years of our journey!</p>
-                        <p className='font-size-24 mt-40 font-bold-200 text-justify'>With a Team of 60+ trained therapists and having a deep-seated belief in the transformative power of wellness, we have set out to create a heaven where our guests could escape the stresses of modern life and reconnect with their inner selves.</p>
-                    </div>
-                </Col>
-                <Col span={12}>
-                    <img src={About_Us} alt='sanjeevanam'/>
-                </Col>
-            </Row>
+        <div id='about' className='flex items-center jc-space-between'>
+            <div className='pt-160 pl-120 pr-80 pb-180'>
+                <h4 className='font-size-60 font-bold-500 font-gold font-family-petrona mb-20 mt-0'>About US</h4>
+                <div className='width-200'>
+                    <Divider className='bg-gold-100 height-4'/>
+                </div>
+                <p className='font-size-24 mt-40 font-bold-200 text-justify'>The founders of Ayur Sanjeevanam comes with over two decades of rich heritage of Ayurveda. Embarked on a mission over 15 years ago to redefine the Spa experience, and to make the benefits of Ayurveda accessible to people at an affordable price, we established the brand ‘Ayur Wellness & Spa’. We opened our first Spa for Men in Koramangala, in Bangalore City in the year 2009, and today we have grown to 6 locations in the City, served more than 2,00,000 guests in the past 15 years of our journey!</p>
+                <p className='font-size-24 mt-40 font-bold-200 text-justify'>With a Team of 60+ trained therapists and having a deep-seated belief in the transformative power of wellness, we have set out to create a heaven where our guests could escape the stresses of modern life and reconnect with their inner selves.</p>
+            </div>
+            <img src={About_Us} alt='sanjeevanam'/>
         </div>
     );
 };

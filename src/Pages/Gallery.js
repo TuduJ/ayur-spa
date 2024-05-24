@@ -19,19 +19,14 @@ import Gallery14 from '../image/Gallery 14.png'
 import Gallery15 from '../image/Gallery 15.png'
 import Gallery16 from '../image/Gallery 16.png'
 
-import ServicesImage from '../image/services_banner.png'
-
 
 const Gallery = () => {
     return (
         <>
             <Header/>
             <div className='mt-100 '>
-                <div className='relative'>
-                    <img src={ServicesImage} alt='description banner' className='sanjeevanam-img'/>
-                    <div className='services-bg flex jc-center items-center '>
-                        <p className='font-size-80 font-bold-500 font-white text-center font-family-petrona'>GALLERY</p>
-                    </div>
+                <div className='services-bg flex jc-center items-center '>
+                    <p className='font-size-80 font-bold-500 font-white text-center font-family-petrona'>GALLERY</p>
                 </div>
                 <div className='pt-95 pl-90 pr-90 pb-77'>
                     <Row gutter={8}>
