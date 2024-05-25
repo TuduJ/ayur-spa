@@ -2,9 +2,17 @@ import React from 'react';
 import YourPackage from "../image/YourPackage.png"
 import YourPackageBackground from "../image/perfect_package_background.png"
 import LineStar from "../image/Line Star.png"
-import { Button, Col, Row } from 'antd';
+import { Col, Row } from 'antd';
+import { useNavigate } from 'react-router-dom';
 
 const ServicePage = () => {
+
+    const navigate = useNavigate();
+
+    const handlRouteMembership = () => {
+        navigate('/membership');
+    }
+
     return (
         <>
             <div id='services' className='mt-60 ml-40 mr-40 mb-80'>
@@ -28,7 +36,7 @@ const ServicePage = () => {
                                 <img src={LineStar} alt='Line start'/>
                             </div>
                             <p className='text-center font-size-18 font-bold-100 mt-20 mb-20'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
-                            <div className='flex jc-center'>
+                            <div className='flex jc-center' onClick={handlRouteMembership}>
                                 <div className='width-180 height-60 bottom-60 absolute border-1 border-gold-100'></div>
                                 <button className='button'>
                                     Explore Benefits
