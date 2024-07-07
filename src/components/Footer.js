@@ -1,5 +1,4 @@
 import React from 'react';
-import FooterImage from '../image/footer_image.png'
 import { Col, Divider, Row } from 'antd';
 import BrandLogo from "../image/Logo.png"
 import { Link } from 'react-router-dom';

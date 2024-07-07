@@ -1,8 +1,7 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import HomeRoot from './Pages/HomeRoot';
 import Gallery from './Pages/Gallery';
-import Header from './components/Header';
 import FindASpa from './Pages/FindASpa';
 import Membership from './Pages/Membership';
 import Contact from './Pages/Contact';

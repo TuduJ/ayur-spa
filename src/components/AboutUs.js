@@ -1,5 +1,4 @@
 import React from 'react';
-import { Col, Divider, Row } from 'antd';
 import About_Us from "../image/about_us.png"
 
 const AboutUs = () => {
