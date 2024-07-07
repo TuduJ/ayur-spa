@@ -20,13 +20,13 @@ const Footer = () => {
                     </div>
                 </div>
             </div>
-            <div className='pt-100 pl-120 pr-120 pb-100'>
+            <div className='pt-100 pl-120 pr-120 pb-100 sm-p-40'>
                 <Row gutter={50}>
-                    <Col span={8}>
+                    <Col lg={8} sm={24}>
                         <img src={BrandLogo} alt="Brand Logo"/>
                         <p className='mt-20 font-size-18 font-gold'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
                     </Col>
-                    <Col span={6}>
+                    <Col lg={6} sm={24}>
                         <div className='width-80'>
                             <Divider className='bg-gold-100 height-4'/>
                         </div>
@@ -35,7 +35,7 @@ const Footer = () => {
                         <p className='mt-10 font-size-24 font-bold-200 font-gold'>Kerala Special Therapies</p>
                         <p className='mt-10 font-size-24 font-bold-200 font-gold'>beauty Treatments</p>
                     </Col>
-                    <Col span={4}>
+                    <Col lg={4} sm={24}>
                         <div className='width-80'>
                             <Divider className='bg-white-100 height-4'/>
                         </div>
@@ -44,7 +44,7 @@ const Footer = () => {
                         <p className='mt-10 font-size-24 font-bold-200 font-gold'><Link to="/membership" className="font-charcoal footer-link">Membership</Link></p>
                         <p className='mt-10 font-size-24 font-bold-200 font-gold'><Link to="/contact" className="font-charcoal footer-link">Contact</Link></p>
                     </Col>
-                    <Col span={6}>
+                    <Col lg={6} sm={24}>
                         <div className='width-80'>
                             <Divider className='bg-gold-100 height-4'/>
                         </div>
